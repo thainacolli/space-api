@@ -1,4 +1,4 @@
 package com.spaceapi.models;
 
-public class Genre {
+public class UsuarioModel {
 }

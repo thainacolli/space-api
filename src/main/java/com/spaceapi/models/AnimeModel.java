@@ -1,4 +1,4 @@
 package com.spaceapi.models;
 
-public class Serie {
+public class AnimeModel {
 }
