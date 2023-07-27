@@ -1,11 +1,18 @@
-  version: "1.0"
-  services:
-    db:
-      image: mongo
-      container_name: mongodb
-      ports:
-        - "27017:27017"
+version: "1.0"
+services:
+  db:
+    image: mongo:latest
+    container_name: mongodb
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data:/data/db
 
-    rabbitMQ:
-      image: "rabbitmq:alpine"
-    ports : "8089:8089"
+  rabbitMQ:
+    image:  rabbitmq:latest
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - 5672:5672
+      - 15672:15672
