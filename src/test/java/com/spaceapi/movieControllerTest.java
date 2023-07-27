@@ -44,8 +44,8 @@ public class movieControllerTest {
         movie.setSynopsis("This is a terror movie very scary");
         movie.setCoverImage("link");
 
-        // Configuração do comportamento esperado do repositório mockado
-        when(movieServices.SaveMovie(any(movie.class));).thenReturn(movie);
+//        // Configuração do comportamento esperado do repositório mockado
+//        when(movieServices.SaveMovie(any(movie.class));).thenReturn(movie);
 
         // Execução do teste
         mockMvc.perform(MockMvcRequestBuilders.post("/movie")
