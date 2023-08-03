@@ -1,18 +1,19 @@
-version: "1.0"
-services:
-  db:
-    image: mongo:latest
-    container_name: mongodb
-    restart: always
-    ports:
-      - 27017:27017
-    volumes:
-      - ./data:/data/db
+ version: "1.0"
+  services:
+    db:
+      image: mongo:latest
+      container_name: mongodb
+      restart: always
+      ports:
+        - 27017:27017
+      volumes:
+        - ./data:/data/db
 
-  rabbitMQ:
-    image:  rabbitmq:latest
-    container_name: rabbitmq
-    restart: always
-    ports:
-      - 5672:5672
-      - 15672:15672
+    rabbitMQ:
+      image:  rabbitmq:latest
+      container_name: rabbitmq
+      restart: always
+      ports:
+        - 5672:5672
+        - 15672:15672
+   
