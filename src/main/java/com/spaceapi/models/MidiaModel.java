@@ -1,16 +1,17 @@
 package com.spaceapi.models;
 
+import com.spaceapi.ENUMS.genreMovieEnum;
 import lombok.Data;
 
 import java.util.Date;
 
 @Data
 public class MidiaModel {
-    String coverImage;
-    String title;
-    String image;
-    String synopsis;
-    Enum<GenreModel> genre;
-    Date release_date;
+    private String coverImage;
+    private String title;
+    private String image;
+    private String synopsis;
+    private genreMovieEnum genre;
+    private Date release_date;
 
 }

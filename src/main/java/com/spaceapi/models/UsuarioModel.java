@@ -1,14 +1,19 @@
 package com.spaceapi.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Table;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+@Table(name="user")
+@Entity
 @Data
-@Document(collection = "user")
 public class UsuarioModel {
     @Id
-    String id;
-    String name;
-    String password;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    private String password;
 }

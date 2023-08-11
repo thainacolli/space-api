@@ -5,27 +5,32 @@ import com.spaceapi.models.MovieModel;
 import com.spaceapi.services.movieServices;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
-@Controller("/movie")
+@RestController
+@RequestMapping("movies")
 @CrossOrigin("*")
 public class movieController {
     private final movieServices servicesMovie;
 
     public movieController(movieServices service){
+
         this.servicesMovie = service;
     }
 
     @PostMapping("/addMovie")
     public ResponseEntity createMovie(@RequestBody MovieDTO movie){
+        ResponseEntity response = servicesMovie.SaveMovie(movie);
+        return response;
+    }
+
+    @GetMapping("/list")
+    public ResponseEntity getAllMovie(){
         try{
-            var newMovie = new MovieModel(movie);
-            servicesMovie.SaveMovie(newMovie);
-            return ResponseEntity.ok("Movie created successfully");
-        }catch (Error e){
-            return ResponseEntity.status(500).body("Movie not created Error : " + e);
+            var movies = servicesMovie.getAllMovies();
+            return ResponseEntity.ok(movies);
+        }catch(Error e){
+            return ResponseEntity.status(400).body("Any Movie available");
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.spaceapi.DTOS;
 
+import com.spaceapi.ENUMS.genreMovieEnum;
 import com.spaceapi.models.UsuarioModel;
 
 import java.util.Date;
@@ -12,6 +13,6 @@ public record MovieDTO(
         Integer durationMinutes,
         Date release_date,
         String synopsis,
-        List<UsuarioModel> userID,
-        Enum genreMovie) {
+
+        genreMovieEnum genreMovie) {
 }

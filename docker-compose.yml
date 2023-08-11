@@ -1,18 +1,16 @@
-  version: "1.0"
-  services:
-    db:
-      image: mongo:latest
-      container_name: mongodb
-      restart: always
-      ports:
-        - 27017:27017
-      volumes:
-        - ./data:/data/db
+version: "3.8"
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: test
+      MYSQL_USER: gigi
+      MYSQL_PASSWORD: 1234
+      MYSQL_ROOT_PASSWORD: 1234
+    ports:
+      - '3308:3036'
+    volumes:
+      - my-db:/var/lib/mysql
+volumes:
+  my-db:
 
-    rabbitMQ:
-      image:  rabbitmq:latest
-      container_name: rabbitmq
-      restart: always
-      ports:
-        - 5672:5672
-        - 15672:15672
