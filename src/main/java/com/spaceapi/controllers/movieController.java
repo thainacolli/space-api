@@ -33,4 +33,20 @@ public class movieController {
             return ResponseEntity.status(400).body("Any Movie available");
         }
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity getMovieById(@PathVariable Long id){
+        ResponseEntity response = servicesMovie.getMovieById(id);
+        return response;
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity deleteMovieById(@PathVariable Long id){
+        return servicesMovie.deleteMovieById(id);
+    }
+
+    @PutMapping("/edit")
+    public ResponseEntity editMovie(@RequestBody MovieDTO movie){
+        return servicesMovie.editMovie(movie);
+    }
 }

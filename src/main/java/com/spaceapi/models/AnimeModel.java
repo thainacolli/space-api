@@ -1,23 +1,32 @@
 package com.spaceapi.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
+import com.spaceapi.ENUMS.genreMovieEnum;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
 
+import java.util.Date;
 import java.util.List;
 
-@Table(name="animes")
+@Table(name= "animes")
 @Entity
 @Data
-public class AnimeModel extends MidiaModel{
+public class AnimeModel  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String studio;
     private Integer epQt;
     private Integer seasonQt;
-    private List<UsuarioModel> usuarioId;
+    @NotNull
+    private String title;
+    @NotNull
+    private String image;
+    @NotNull
+    private String synopsis;
+    @NotNull
+    private genreMovieEnum genre;
+
+    private Date release_date;
+
 }

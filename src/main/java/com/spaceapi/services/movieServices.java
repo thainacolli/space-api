@@ -6,6 +6,7 @@ import com.spaceapi.repositories.movieRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,21 +30,73 @@ public class movieServices {
             newMovie.setRelease_date(movie.release_date());
             newMovie.setImage(movie.image());
             newMovie.setGenre(movie.genreMovie());
+
             Optional<MovieModel> movieResult = Optional.ofNullable(movieRepo.save(newMovie));
+
             if(movieResult.isPresent()){
-                return ResponseEntity.status(200).body(newMovie);
+                return ResponseEntity.status(200).body(movieResult);
             }else{
-                return ResponseEntity.status(500).body(newMovie);
+                return ResponseEntity.status(500).body(movieResult);
             }
+
         }catch(Error e){
             return ResponseEntity.status(500).body(e);
         }
 
 
     }
-
     public List<MovieModel> getAllMovies(){
         return movieRepo.findAll();
     }
 
+    public ResponseEntity deleteMovieById(Long id){
+        try {
+            Optional<MovieModel> movie = movieRepo.findById(id);
+
+            if (movie.isPresent()) {
+                movieRepo.deleteById(id);
+                return ResponseEntity.status(200).body("Movie deleted successfully");
+            } else {
+                return ResponseEntity.status(404).body("Movie not found");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Error deleting movie");
+        }
+    }
+
+    public ResponseEntity getMovieById(Long id){
+        try{
+            Optional<MovieModel> movie = movieRepo.findById(id);
+            if(movie.isPresent()){
+                return ResponseEntity.status(200).body(movie);
+            }else{
+                return ResponseEntity.status(400).body("Movie not found");
+            }
+        }catch (Exception e){
+            return ResponseEntity.status(500).body("Error this movie isent available");
+        }
+    }
+
+    public ResponseEntity editMovie(MovieDTO movie){
+        try{
+            MovieModel newMovie = new MovieModel();
+            newMovie.setTitle(movie.title());
+            newMovie.setSynopsis(movie.synopsis());
+            newMovie.setDurationMinutes(movie.durationMinutes());
+            newMovie.setCoverImage(movie.coverImage());
+            newMovie.setRelease_date(movie.release_date());
+            newMovie.setImage(movie.image());
+            newMovie.setGenre(movie.genreMovie());
+
+            Optional<MovieModel> movieSaved = Optional.ofNullable(movieRepo.save(newMovie));
+            if(movieSaved.isPresent()){
+                return ResponseEntity.status(200).body(movieSaved);
+            }else{
+                return ResponseEntity.status(400).body("This movie isent available");
+            }
+        }catch (Exception e){
+            return ResponseEntity.status(500).body("Error on editing");
+        }
+
+    }
 }

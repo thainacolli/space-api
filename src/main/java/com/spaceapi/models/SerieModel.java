@@ -5,18 +5,18 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.*;
 
 import java.util.List;
 
 @Table(name="series")
 @Entity
 @Data
-public class SerieModel extends MidiaModel {
+public class SerieModel  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer epQt;
     private Integer seasonQt;
-    private List<UsuarioModel> usuarioId;
+
 }

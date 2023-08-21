@@ -6,8 +6,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.*;
 
 import java.util.Date;
 import java.util.List;
@@ -16,18 +18,30 @@ import java.util.List;
 @Entity
 @Data
 public class MovieModel{
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
     private Integer durationMinutes;
+
+    @NotNull
+    private String coverImage;
+    @NotNull
+    private String title;
+    @NotNull
+    private String image;
+    @NotNull
+    private String synopsis;
+    @NotNull
+    private genreMovieEnum genre;
+
+    private Date release_date;
     //List<UsuarioModel> usuarioId;
 
-    private String coverImage;
-    private String title;
-    private String image;
-    private String synopsis;
-    private genreMovieEnum genre;
-    private Date release_date;
+    public MovieModel(){
+
+    }
 
     public MovieModel(MovieDTO movie){
         this.durationMinutes = movie.durationMinutes();
@@ -39,7 +53,5 @@ public class MovieModel{
         //this.usuarioId = movie.userID();
         this.coverImage = movie.coverImage();
     }
-    public MovieModel(){
 
-    }
 }

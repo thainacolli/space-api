@@ -1,10 +1,8 @@
 package com.spaceapi.DTOS;
 
 import com.spaceapi.ENUMS.genreMovieEnum;
-import com.spaceapi.models.UsuarioModel;
 
 import java.util.Date;
-import java.util.List;
 
 public record MovieDTO(
         String title,
