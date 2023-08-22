@@ -1,18 +1,32 @@
 package com.spaceapi.models;
 
+import com.spaceapi.ENUMS.genreMovieEnum;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
 import java.util.List;
 
+@Table(name= "animes")
+@Entity
 @Data
-@Document(collection = "animes")
-public class AnimeModel extends MidiaModel{
+public class AnimeModel  {
     @Id
-    String id;
-    String studio;
-    Integer epQt;
-    Integer seasonQt;
-    List<UsuarioModel> usuarioId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String studio;
+    private Integer epQt;
+    private Integer seasonQt;
+    @NotNull
+    private String title;
+    @NotNull
+    private String image;
+    @NotNull
+    private String synopsis;
+    @NotNull
+    private genreMovieEnum genre;
+
+    private Date release_date;
+
 }

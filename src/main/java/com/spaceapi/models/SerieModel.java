@@ -1,32 +1,22 @@
 package com.spaceapi.models;
 
-
-import com.spaceapi.DTOS.SerieDTO;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Table;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import jakarta.persistence.*;
 
 import java.util.List;
 
+@Table(name="series")
+@Entity
 @Data
-@Document(collection = "series")
 public class SerieModel  {
     @Id
-    String id;
-    Integer epQt;
-    Integer seasonQt;
-    List<UsuarioModel> userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private Integer epQt;
+    private Integer seasonQt;
 
-    List<MidiaModel> midiaId;
-
-    public SerieModel(SerieDTO serie) {
-        this.epQt = serie.epQtd();
-        this.seasonQt = serie.seasonQtd();
-        this.userId = serie.userId();
-        this.midiaId = serie.midiaId();
-    }
-
-
-    public SerieModel() {
-    }
 }
