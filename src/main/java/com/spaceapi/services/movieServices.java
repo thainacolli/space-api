@@ -77,22 +77,13 @@ public class movieServices {
         }
     }
 
-    public ResponseEntity editMovie(MovieDTO movie){
+    public ResponseEntity editMovie(MovieModel movie){
         try{
-            MovieModel newMovie = new MovieModel();
-            newMovie.setTitle(movie.title());
-            newMovie.setSynopsis(movie.synopsis());
-            newMovie.setDurationMinutes(movie.durationMinutes());
-            newMovie.setCoverImage(movie.coverImage());
-            newMovie.setRelease_date(movie.release_date());
-            newMovie.setImage(movie.image());
-            newMovie.setGenre(movie.genreMovie());
-
-            Optional<MovieModel> movieSaved = Optional.ofNullable(movieRepo.save(newMovie));
+            Optional<MovieModel> movieSaved = Optional.ofNullable(movieRepo.save(movie));
             if(movieSaved.isPresent()){
                 return ResponseEntity.status(200).body(movieSaved);
             }else{
-                return ResponseEntity.status(400).body("This movie isent available");
+                return ResponseEntity.status(400).body("This movie is not available");
             }
         }catch (Exception e){
             return ResponseEntity.status(500).body("Error on editing");
