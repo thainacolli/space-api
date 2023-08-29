@@ -46,7 +46,7 @@ public class movieController {
     }
 
     @PutMapping("/edit")
-    public ResponseEntity editMovie(@RequestBody MovieDTO movie){
+    public ResponseEntity editMovie(@RequestBody MovieModel movie){
         return servicesMovie.editMovie(movie);
     }
 }
