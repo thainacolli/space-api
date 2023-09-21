@@ -1,7 +1,7 @@
 package com.spaceapi.DTOS;
 
 import com.spaceapi.models.MidiaModel;
-import com.spaceapi.models.UsuarioModel;
+import com.spaceapi.models.UserModel;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public record SerieDTO(
 
         Integer seasonQtd,
 
-        List<UsuarioModel> userId,
+        List<UserModel> userId,
 
         List<MidiaModel> midiaId) {
 }
