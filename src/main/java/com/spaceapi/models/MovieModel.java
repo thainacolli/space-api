@@ -36,6 +36,7 @@ public class MovieModel{
     @NotNull
     private genreMovieEnum genre;
 
+    @Temporal(TemporalType.DATE)
     private Date release_date;
     //List<UsuarioModel> usuarioId;
 
