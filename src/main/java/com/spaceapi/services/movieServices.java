@@ -34,7 +34,7 @@ public class movieServices {
             Optional<MovieModel> movieResult = Optional.ofNullable(movieRepo.save(newMovie));
 
             if(movieResult.isPresent()){
-                return ResponseEntity.status(200).body(movieResult);
+                return ResponseEntity.status(201).body(movieResult);
             }else{
                 return ResponseEntity.status(500).body(movieResult);
             }
