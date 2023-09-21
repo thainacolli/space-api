@@ -4,7 +4,6 @@ import com.spaceapi.DTOS.MovieDTO;
 import com.spaceapi.models.MovieModel;
 import com.spaceapi.services.movieServices;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
