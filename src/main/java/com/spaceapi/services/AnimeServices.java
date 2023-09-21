@@ -4,6 +4,7 @@ import com.spaceapi.DTOS.AnimeDTO;
 import com.spaceapi.DTOS.MovieDTO;
 import com.spaceapi.models.AnimeModel;
 import com.spaceapi.models.MovieModel;
+import com.spaceapi.models.UserModel;
 import com.spaceapi.repositories.AnimeRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,9 @@ public class AnimeServices {
     @Autowired
     private AnimeRepositories repository;
 
+    @Autowired
+    private UserServices userServices;
+
     public ResponseEntity saveAnime(AnimeDTO anime) {
         try {
             AnimeModel newAnime = new AnimeModel();
@@ -35,6 +39,9 @@ public class AnimeServices {
             newAnime.setGenre(anime.genreMovie());
             newAnime.setSeasonQt(anime.seasonQt());
 
+            UserModel user = userServices.findById(anime.user());
+            newAnime.setUser(user);
+
             Optional<AnimeModel> animeResult = Optional.ofNullable(repository.save(newAnime));
 
             if (animeResult.isPresent()) {
@@ -45,6 +52,8 @@ public class AnimeServices {
 
         } catch (Error e) {
             return ResponseEntity.status(500).body(e);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
 
     }
