@@ -13,5 +13,6 @@ public record AnimeDTO(String title,
                        Integer epQt,
                        genreMovieEnum genreMovie,
                        String studio,
+                       Long user,
                        Integer seasonQt) {
 }
