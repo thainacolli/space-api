@@ -35,4 +35,8 @@ public class AnimeModel  {
     @NotNull(message = "A data não pode ser nula")
     private Date release_date;
 
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private UserModel user;
+
 }
