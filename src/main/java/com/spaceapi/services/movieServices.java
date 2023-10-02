@@ -2,6 +2,7 @@ package com.spaceapi.services;
 
 import com.spaceapi.DTOS.MovieDTO;
 import com.spaceapi.models.MovieModel;
+import com.spaceapi.models.UserModel;
 import com.spaceapi.repositories.movieRepositories;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,8 @@ import java.util.Optional;
 @Service
 public class movieServices {
     private final movieRepositories movieRepo;
+
+    @Autowired UserServices userservices;
 
     @Autowired
     public movieServices(movieRepositories movieRepo){
@@ -31,16 +34,21 @@ public class movieServices {
             newMovie.setImage(movie.image());
             newMovie.setGenre(movie.genreMovie());
 
+            UserModel user = userservices.findById(movie.user());
+            newMovie.setUser(user);
+
             Optional<MovieModel> movieResult = Optional.ofNullable(movieRepo.save(newMovie));
 
             if(movieResult.isPresent()){
-                return ResponseEntity.status(200).body(movieResult);
+                return ResponseEntity.status(201).body(movieResult);
             }else{
                 return ResponseEntity.status(500).body(movieResult);
             }
 
         }catch(Error e){
             return ResponseEntity.status(500).body(e);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
 
 

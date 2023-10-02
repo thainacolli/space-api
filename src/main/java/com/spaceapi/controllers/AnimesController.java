@@ -1,9 +1,7 @@
 package com.spaceapi.controllers;
 
 import com.spaceapi.DTOS.AnimeDTO;
-import com.spaceapi.DTOS.MovieDTO;
 import com.spaceapi.models.AnimeModel;
-import com.spaceapi.repositories.AnimeRepositories;
 import com.spaceapi.services.AnimeServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +14,7 @@ public class AnimesController {
 
     @Autowired
     private AnimeServices services;
+
     @PostMapping("/addAnime")
     public ResponseEntity createAnime(@RequestBody AnimeDTO anime){
         ResponseEntity response = services.saveAnime(anime);

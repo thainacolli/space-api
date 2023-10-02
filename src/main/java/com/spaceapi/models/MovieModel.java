@@ -36,8 +36,12 @@ public class MovieModel{
     @NotNull
     private genreMovieEnum genre;
 
+    @Temporal(TemporalType.DATE)
     private Date release_date;
-    //List<UsuarioModel> usuarioId;
+
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private UserModel user;
 
     public MovieModel(){
 

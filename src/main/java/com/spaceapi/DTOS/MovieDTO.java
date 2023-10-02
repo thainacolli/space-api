@@ -11,6 +11,6 @@ public record MovieDTO(
         Integer durationMinutes,
         Date release_date,
         String synopsis,
-
+        Long user,
         genreMovieEnum genreMovie) {
 }
